@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "AtmSensor"
+version = "0.1.0"
+description = ""
+authors = ["KGB33 <github@bassingthwaite.org>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+adafruit-circuitpython-bme680 = "^3.1.3"
+esptool = "^2.8"
+adafruit-ampy = "^1.0.7"
+flask = "^1.1.1"
+tinydb = "^3.15.2"
+flask-restful = "^0.3.8"
+python-dotenv = "^0.12.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+black = "^19.10b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
