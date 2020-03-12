@@ -1,21 +1,28 @@
 from flask_restful import Resource, reqparse
+from tinydb.operations import add
 
-from IoTServer.db import db, SensorQ
+from IoTServer.db import db, SensorQ, append
 
 parser = reqparse.RequestParser()
-parser.add_argument("bme680")
+parser.add_argument("bme680", type=dict)
 
 
 class BME680(Resource):
     def post(self, sensor_id):
         args = parser.parse_args()
         sensor = args["bme680"]
-        print(sensor, type(sensor))
-        for key, value in sensor["data"]:
-            sensor["data"][key] = list(value)
+        if not db.search(SensorQ._id == sensor_id):
+            db.insert(
+                {
+                    "_id": sensor_id,
+                    "humidity": [],
+                    "temperture": [],
+                    "pressure": [],
+                    "airQuality": [],
+                }
+            )
 
-        if db.search(SensorQ.id == sensor_id):
-            # update
-            return "Updated -- WIP!"
-        else:
-            return db.insert(sensor)
+        del sensor["_id"]
+
+        for key, value in sensor.items():
+            db.update(append(key, value), SensorQ._id == sensor_id)
