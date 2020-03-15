@@ -14,8 +14,24 @@
           > `-fm dio` is required for some NodeMCU boards
 
 2. Move files onto board via Ampy
-  * Install Ampy
-    
-    >  `poetry add adafruit-ampy`
+   * First, Install Ampy 
+     >  `poetry add adafruit-ampy`
 
-  * 
+    ### Method 1
+
+    * Move files in sensor to board
+      > `ampy put sensor/boot.py`
+      > `ampy put sensor/main.pt`
+      > `ampy put sensor/wifi_info.py`
+
+    * Reset
+      > `ampy reset`
+
+    * Run Test file
+      > `ampy run sensor/test.py`
+
+    ### Method 2
+    * Run the install script
+      > `python sensor/install.py`
+
+  
