@@ -62,33 +62,34 @@ if args.wipe:
 
 
 # Install/Update Packages
-subprocess.run([ampy, "mkdir", "lib"])
+if args.update_libs:
+    subprocess.run([ampy, "mkdir", "lib"])
 
-CIRCUIT_PYTHON_VERSION = 3
-PACKAGE_DIR = (
-    f"F:/CircuitPython/v{CIRCUIT_PYTHON_VERSION}/lib"
-    if type(CIRCUIT_PYTHON_VERSION) == int
-    else f"F:/CircuitPython/py/lib"
-)
-SUFFIX = ".mpy" if type(CIRCUIT_PYTHON_VERSION) == int else ".py"
+    CIRCUIT_PYTHON_VERSION = 3
+    PACKAGE_DIR = (
+        f"F:/CircuitPython/v{CIRCUIT_PYTHON_VERSION}/lib"
+        if type(CIRCUIT_PYTHON_VERSION) == int
+        else f"F:/CircuitPython/py/lib"
+    )
+    SUFFIX = ".mpy" if type(CIRCUIT_PYTHON_VERSION) == int else ".py"
 
-avalible_packages = os.listdir(PACKAGE_DIR)
+    avalible_packages = os.listdir(PACKAGE_DIR)
 
-required_packages = []
-with open("sensor/requirements.txt", "r") as requirements_file:
-    for package in requirements_file.readlines():
-        package = package.strip()
-        if package in avalible_packages:
-            required_packages.append(package)
-        elif f"{package}{SUFFIX}" in avalible_packages:
-            required_packages.append(f"{package}{SUFFIX}")
-        else:
-            raise FileNotFoundError(package)
+    required_packages = []
+    with open("sensor/requirements.txt", "r") as requirements_file:
+        for package in requirements_file.readlines():
+            package = package.strip()
+            if package in avalible_packages:
+                required_packages.append(package)
+            elif f"{package}{SUFFIX}" in avalible_packages:
+                required_packages.append(f"{package}{SUFFIX}")
+            else:
+                raise FileNotFoundError(package)
 
-print("Copying Packages...")
-for package in required_packages:
-    subprocess.run([ampy, "put", f"{PACKAGE_DIR}/{package}", f"lib/{package}"])
-    print(f"\tCopied {package}")
+    print("Copying Packages...")
+    for package in required_packages:
+        subprocess.run([ampy, "put", f"{PACKAGE_DIR}/{package}", f"lib/{package}"])
+        print(f"\tCopied {package}")
 
 # Add Our files
 print("Copying Source Files...")
