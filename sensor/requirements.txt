@@ -1,3 +1,2 @@
-adafruit_requests
-adafruit_esp32spi
+adafruit_bme680
 adafruit_bus_device
