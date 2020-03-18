@@ -1,23 +1,21 @@
 import board
 import busio
-from digitalio import DigitalInOut
-import adafruit_requests as requests
-import network
-import adafruit_esp32spi.adafruit_esp32spi_socket as socket
+import adafruit_bme680
+import time
 
 
-sta = network.WLAN(network.STA_IF)
+i2c = busio.I2C(board.SCL, board.SDA)
+sensor = adafruit_bme680.Adafruit_BME680_I2C(i2c)
 
-requests.set_socket(socket, sta)
+def get_reading():
+    return {
+        'tempature': sensor.temperature,
+        'gas': sensor.gas,
+        'humidity': sensor.humidity,
+        'pressure': sensor.pressure
+    }
 
-ADDRESS = "http://192.168.86.254:5000/api/v1/bme680/01"
-
-TEXT_URL = "http://wifitest.adafruit.com/testwifi/index.html"
-
-print("Fetching text from %s" % TEXT_URL)
-response = requests.get(TEXT_URL)
-print("-" * 40)
-
-print("Text Response: ", response.text)
-print("-" * 40)
-response.close()
+if __name__ == "__main__":
+    for _ in range(5):
+        print(get_reading())
+        time.sleep(1)
