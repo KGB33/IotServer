@@ -21,7 +21,7 @@
 
     * Move files in sensor to board
       > `ampy put sensor/boot.py`
-      > `ampy put sensor/main.pt`
+      > `ampy put sensor/_main.pt main.py`
       > `ampy put sensor/wifi_info.py`
 
     * Reset
