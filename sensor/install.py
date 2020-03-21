@@ -21,7 +21,7 @@ parser.add_argument(
 )
 parser.add_argument("--dry_run", action="store_true", default=False)
 parser.add_argument("--flash", action="store_true")
-parser.add_argument("-d", "--detach", action='store_true')
+parser.add_argument("-d", "--detach", action="store_true")
 args = parser.parse_args()
 
 
