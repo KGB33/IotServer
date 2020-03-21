@@ -26,3 +26,6 @@ class BME680(Resource):
 
         for key, value in sensor.items():
             db.update(append(key, value), SensorQ._id == sensor_id)
+
+    def get(self, sensor_id):
+        return f"Sensor {sensor_id}"
