@@ -37,8 +37,18 @@ def test_memory():
     print("\tUsed: ", used, "B")
     print("\tTotal: ", total, "B")
 
+def test_requests():
+    import requests
+    with requests.get("http://api.xively.com/") as r:
+        print(r)
+        print(r.content)
+        print(r.text)
+        print(r.content)
+        print(r.json())
+
 
 if __name__ == "__main__":
     test_network_info()
     test_bme680()
     test_memory()
+    test_requests()
