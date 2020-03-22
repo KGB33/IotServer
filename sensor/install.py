@@ -24,6 +24,17 @@ parser.add_argument("--flash", action="store_true")
 parser.add_argument("-d", "--detach", action="store_true")
 args = parser.parse_args()
 
+# Constants
+BIN_FILE = "flashes/adafruit-circuitpython-feather_huzzah-3.1.2.bin"
+
+CIRCUIT_PYTHON_VERSION = 3
+PACKAGE_DIR = (
+    f"F:/CircuitPython/v{CIRCUIT_PYTHON_VERSION}/lib"
+    if type(CIRCUIT_PYTHON_VERSION) == int
+    else f"F:/CircuitPython/py/lib"
+)
+SUFFIX = ".mpy" if type(CIRCUIT_PYTHON_VERSION) == int else ".py"
+
 
 if args.port:
     ampy = f"ampy -p {args.port}"
@@ -36,7 +47,7 @@ else:
 if args.flash:
     os.system("esptool.py -p COM3 erase_flash")
     os.system(
-        "esptool.py -p COM3 write_flash --flash_size=detect -fm dio 0 adafruit-circuitpython-feather_huzzah-3.1.2.bin"
+        f"esptool.py -p COM3 write_flash --flash_size=detect -fm dio 0 {BIN_FILE}"
     )
     time.sleep(2)
 
@@ -65,14 +76,6 @@ if args.wipe:
 # Install/Update Packages
 if args.update_libs:
     subprocess.run([ampy, "mkdir", "lib"])
-
-    CIRCUIT_PYTHON_VERSION = 3
-    PACKAGE_DIR = (
-        f"F:/CircuitPython/v{CIRCUIT_PYTHON_VERSION}/lib"
-        if type(CIRCUIT_PYTHON_VERSION) == int
-        else f"F:/CircuitPython/py/lib"
-    )
-    SUFFIX = ".mpy" if type(CIRCUIT_PYTHON_VERSION) == int else ".py"
 
     avalible_packages = os.listdir(PACKAGE_DIR)
 
