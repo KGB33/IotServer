@@ -49,4 +49,5 @@
 | VIN   | 3v3         |
 | GND   | GND         |
 | DATA  | D5 (GPIO14) |
-  
+
+![Pinout diagram]()
