@@ -1,2 +1,3 @@
 adafruit_bme680
+adafruit_dht
 adafruit_bus_device
