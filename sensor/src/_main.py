@@ -2,6 +2,7 @@ import board
 import busio
 import microcontroller
 import adafruit_bme680
+import adafruit_dht
 import requests
 import time
 
@@ -20,6 +21,17 @@ class bme680:
             "gas": cls._sensor.gas,
             "humidity": cls._sensor.humidity,
             "pressure": cls._sensor.pressure,
+        }
+
+
+class dht11:
+    _sensor = adafruit_dht.DHT11(board.GPIO14)
+
+    @classmethod
+    def get_reading(cls):
+        return {
+            "tempature": cls._sensor.temperature,
+            "humidity": cls._sensor.humidity,
         }
 
 
