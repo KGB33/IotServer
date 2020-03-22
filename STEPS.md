@@ -50,4 +50,4 @@
 | GND   | GND         |
 | DATA  | D5 (GPIO14) |
 
-![Pinout diagram]()
+![Pinout diagram](NodeMCU-ESP-12E-pinout.png)
