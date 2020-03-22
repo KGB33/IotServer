@@ -37,8 +37,10 @@ def test_memory():
     print("\tUsed: ", used, "B")
     print("\tTotal: ", total, "B")
 
+
 def test_requests():
     import requests
+
     with requests.get("http://api.xively.com/") as r:
         print(r)
         print(r.content)

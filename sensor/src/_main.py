@@ -24,9 +24,6 @@ def get_reading():
     }
 
 
-
-
-
 if __name__ == "__main__":
     print("Url: ", POST_URL)
     for _ in range(3):
