@@ -139,3 +139,6 @@ dmypy.json
 # tinyDB
 db.json
 
+
+# Board flashes
+*.bin
