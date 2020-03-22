@@ -1,19 +1,21 @@
 def test_network_info():
+    import network
+
     sta = network.WLAN(network.STA_IF)
     ap = network.WLAN(network.AP_IF)
 
     print("\nWifi Info")
-    print("STA_IF")
-    print("  Is Connected: " + str(sta.isconnected()))
-    print("  Status: " + str(sta.status()))
-    print("  Active: " + str(sta.active()))
-    print("  Config: " + str(sta.ifconfig()))
+    print("\tSTA_IF")
+    print("\t  Is Connected: " + str(sta.isconnected()))
+    print("\t  Status: " + str(sta.status()))
+    print("\t  Active: " + str(sta.active()))
+    print("\t  Config: " + str(sta.ifconfig()))
 
-    print("AP_IF")
-    print("  Is Connected: " + str(ap.isconnected()))
-    print("  Status: " + str(ap.status()))
-    print("  Active: " + str(ap.active()))
-    print("  Config: " + str(ap.ifconfig()))
+    print("\tAP_IF")
+    print("\t  Is Connected: " + str(ap.isconnected()))
+    print("\t  Status: " + str(ap.status()))
+    print("\t  Active: " + str(ap.active()))
+    print("\t  Config: " + str(ap.ifconfig()))
 
 
 def test_bme680():
@@ -22,8 +24,18 @@ def test_bme680():
     except ImportError:
         import _main as main
 
-    print("\nSensor Reading:")
-    print(main.get_reading())
+    print("\nbme680 Sensor Reading:")
+    print("\t", main.bme680.get_reading())
+
+
+def test_dht11():
+    try:
+        import main
+    except ImportError:
+        import _main as main
+
+    print("\ndht11 Sensor Reading:")
+    print("\t", main.dht11.get_reading())
 
 
 def test_memory():
@@ -52,5 +64,6 @@ def test_requests():
 if __name__ == "__main__":
     test_network_info()
     test_bme680()
+    test_dht11()
     test_memory()
-    test_requests()
+    # test_requests()
