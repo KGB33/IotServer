@@ -34,4 +34,19 @@
     * Run the install script
       > `python sensor/install.py`
 
+
+## Wiring
+| bme680 | ESP8266 |
+|--------|---------|
+| VIN    | 3v3     |
+| GND    | GND     |
+| SCK    | D1      |
+| SDI    | D2      |
+
+
+| dht11 | ESP8266     |
+|-------|-------------|
+| VIN   | 3v3         |
+| GND   | GND         |
+| DATA  | D5 (GPIO14) |
   
