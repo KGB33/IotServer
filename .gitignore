@@ -141,4 +141,4 @@ db.json
 
 
 # Board flashes
-*.bin
+/flashes
